@@ -8,7 +8,7 @@ pub fn create(request: Json<Task>) -> Result<String> {
     let title = request.title.to_string();
     let is_complete = request.is_complete;
 
-    mysql::create_task(&connection, &title, &is_complete);
+    mysql::create_task(&connection, &title, is_complete);
 
     Ok(request.title.to_string())
 }

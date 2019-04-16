@@ -11,5 +11,5 @@ pub struct Task {
 #[table_name = "tasks"]
 pub struct NewTask<'t> {
     pub title: &'t String,
-    pub is_complete:&'t bool,
+    pub is_complete: bool,
 }
