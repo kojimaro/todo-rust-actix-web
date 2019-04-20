@@ -1,6 +1,6 @@
 use super::schema::tasks;
 
-#[derive(Deserialize, Queryable)]
+#[derive(Deserialize, Serialize, Queryable)]
 pub struct Task {
     pub id: i32,
     pub title: String,
@@ -9,7 +9,7 @@ pub struct Task {
 
 #[derive(Insertable)]
 #[table_name = "tasks"]
-pub struct NewTask<'t> {
-    pub title: &'t String,
-    pub is_complete: bool,
+pub struct NewTask<'a> {
+    pub title: &'a String,
+    pub is_complete: &'a bool,
 }

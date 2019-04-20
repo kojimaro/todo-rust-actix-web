@@ -10,12 +10,14 @@ extern crate diesel;
 extern crate serde_derive;
 extern crate dotenv;
 
-use actix_web::{server, App, http};
-use api::task::{create};
+use actix_web::{server, App, http::Method};
+use api::task::{index, store};
 
 fn main() {
     let app = move || {
-        App::new().resource("/tasks", |r| r.method(http::Method::POST).with(create))
+        App::new()
+            .resource("/tasks", |r| r.method(Method::GET).f(index))
+            .resource("/task", |r| r.method(Method::POST).with(store))
     };
 
     server::new(app)

@@ -12,7 +12,7 @@ pub fn establish_connection() -> MysqlConnection {
         .unwrap_or_else(|_| panic!("Error connecting to {}", database_url))
 }
 
-pub fn create_task(conn: &MysqlConnection, title: &String, is_complete: bool) -> Task {
+pub fn create_task(conn: &MysqlConnection, title: &String, is_complete: &bool) -> Task {
     use super::schema::tasks::dsl::{id, tasks};
 
     let new_task = NewTask { title, is_complete };
